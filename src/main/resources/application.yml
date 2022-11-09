@@ -1,0 +1,21 @@
+server:
+  port: 8082
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: residualsModule
+        uri: http://localhost:8085/
+        predicates:
+        - Path=/residuals/**
+      - id: dealersModule
+        uri: http://localhost:8083/
+        predicates:
+        - Path=/dealers/**
+  data:
+     mongodb:
+        host: localhost
+        port: 27017
+        database: Mazda
+  main:
+     web-application-type: reactive
